@@ -1,0 +1,34 @@
+User should be able to see the Jobs in UI and do CRUD operations.
+Jobs can be of 2 types.
+    Single Execution (executed once, may be in some time in future.
+    Repetitive ( can be executed multiple times based on the schedule given)
+Have to handle 10 Million Jobs a day.
+If Job execution fails , retry the job for 5 times before giving up.
+
+Questions:
+1. Should we show future jobs? For recurring jobs, show only which are in Scheduled state. 
+2. What should "Get views API" return? What will be the status that is reported? Do not show future jobs (in case of recurring jobs). Specified by user but upper limit of 1 month.
+3. How many past jobs do we need to show? Do we need to paginate jobs? Specified by user but upper limit of 1 month.
+4. Is user authorized to create jobs? Check permission levels? authorized user only. no segregation of permission level. 
+5. What is the scheduling policy for the job? FCFS based on availability of machines. Queues (type of machines).
+6. Upper limit on duration of job? 1 day
+7. Do we need to send notifications to report status of job when it terminates? P1
+8. Can user specify CPU/memory/disk/environment requirements or is it automatically selected? yes they can. 
+9. Update: Update if job not started
+10. Delete job if not already started.
+11. Can a single worker run multiple jobs?
+
+
+Status of jobs: Submitted/Scheduled/In Progress/Success/Failed/Aborted
+
+Back of envelope calculations
+10^6 jobs/day
+1GB/day
+
+avg 2hrs/job
+
+10 jobs/hr
+20 machines needed
+10 normal, 5 high compute, 5 high memory
+
+acrhive old jobs in cold storage
